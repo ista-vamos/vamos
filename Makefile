@@ -37,7 +37,7 @@ sources: sources-config
 	make -C vamos-sources
 
 sources-config: sources-init
-	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dshamon_DIR=../shamon/cmake/shamon -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
+	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -DBUILD_DYNAMORIO_IF_MISSIN=ON -Dshamon_DIR=../shamon/cmake/shamon -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
 
 sources-init:
 	test -f vamos-sources/CMakeLists.txt || git submodule update --init --recursive -- vamos-sources
