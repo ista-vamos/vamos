@@ -36,8 +36,11 @@ compiler-init:
 sources: shamon sources-config
 	+make -C vamos-sources
 
-sources-config: shamon sources-init
-	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -DBUILD_DYNAMORIO_IF_MISSING=ON -Dshamon_DIR=../shamon/cmake/shamon -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
+dynamorio:
+	+make -C vamos-sources/ext dynamorio
+
+sources-config: shamon sources-init dynamorio
+	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dshamon_DIR=../shamon/cmake/shamon -DDynamoRIO_DIR=ext/dynamorio/build/cmake -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
 
 sources-init:
 	test -f vamos-sources/CMakeLists.txt || git submodule update --init --recursive -- vamos-sources
