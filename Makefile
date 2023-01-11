@@ -1,5 +1,10 @@
 CC=clang
 BUILD_TYPE := $(if $(BUILD_TYPE),$(BUILD_TYPE),"RelWithDebInfo")
+ifdef $(DynamoRIO_DIR)
+BUILD_DRIO := "yes"
+else
+DynamoRIO_DIR := "ext/dynamorio/build/cmake"
+endif
 
 all: shamon compiler sources
 
@@ -37,10 +42,14 @@ sources: shamon sources-config
 	+make -C vamos-sources
 
 dynamorio: sources-init
+ifdef $(BUILD_DRIO)
 	+make -C vamos-sources/ext dynamorio
+else
+	@echo "Using DynamoRIO_DIR = $(DynamoRIO_DIR)"
+endif
 
 sources-config: shamon sources-init dynamorio
-	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dshamon_DIR=../shamon/cmake/shamon -DDynamoRIO_DIR=ext/dynamorio/build/cmake -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
+	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dshamon_DIR=../shamon/cmake/shamon -DDynamoRIO_DIR=$(DynamoRIO_DIR) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
 
 sources-init:
 	test -f vamos-sources/CMakeLists.txt || git submodule update --init --recursive -- vamos-sources
