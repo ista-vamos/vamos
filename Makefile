@@ -36,7 +36,7 @@ compiler-init:
 sources: shamon sources-config
 	+make -C vamos-sources
 
-dynamorio:
+dynamorio: sources-init
 	+make -C vamos-sources/ext dynamorio
 
 sources-config: shamon sources-init dynamorio
@@ -48,7 +48,7 @@ sources-init:
 
 experiments-config: shamon
 	test -f experiments/CMakeLists.txt || git clone git@github.com:ista-vamos/experiments.git
-	cd experiments && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dshamon_DIR=../shamon/cmake/shamon -Dvamos_compiler_DIR=../vamos-compiler -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)) || git clean -xdf
+	cd experiments && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dshamon_DIR=../shamon/cmake/shamon -Dvamos_sources_DIR=../vamos-sources -Dvamos_compiler_DIR=../vamos-compiler -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)) || git clean -xdf
 
 experiments: experiments-config all
 	# FIXME: change this to use HTTPS after making it public
