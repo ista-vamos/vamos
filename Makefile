@@ -14,7 +14,7 @@ reconfigure:
 	make sources-config
 
 shamon: shamon-config
-	make -C shamon
+	+make -C shamon
 
 shamon-config: shamon-init
 	cd shamon && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SHAMON_OPTS))
@@ -23,8 +23,8 @@ shamon-init:
 	test -f shamon/CMakeLists.txt || git submodule update --init --recursive -- shamon
 
 
-compiler: compiler-config
-	make -C vamos-compiler
+compiler: shamon compiler-config
+	+make -C vamos-compiler
 
 compiler-config: compiler-init
 	cd vamos-compiler && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dshamon_DIR=../shamon/cmake/shamon -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
@@ -33,7 +33,7 @@ compiler-init:
 	test -f vamos-compiler/CMakeLists.txt || git submodule update --init --recursive -- vamos-compiler
 
 
-sources: sources-config
+sources: shamon sources-config
 	+make -C vamos-sources
 
 sources-config: sources-init
