@@ -1,9 +1,9 @@
 [submodule "shamon"]
 	path = shamon
-	url = https://github.com/ista-vamos/shamon.git
+	url = git@github.com:ista-vamos/shamon.git
 [submodule "vamos-compiler"]
 	path = vamos-compiler
-	url = https://github.com/ista-vamos/vamos-compiler.git
+	url = git@github.com:ista-vamos/vamos-compiler
 [submodule "vamos-sources"]
 	path = vamos-sources
-	url = https://github.com/ista-vamos/vamos-sources.git
+	url = git@github.com:ista-vamos/vamos-sources
