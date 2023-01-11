@@ -34,7 +34,8 @@ compiler: compiler-config
 compiler-config: shamon compiler-init
 	cd vamos-compiler && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dshamon_DIR=../shamon/cmake/shamon -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
 
-compiler-init:
+# make inits dependent, because git locks config file
+compiler-init: sources-init
 	test -f vamos-compiler/CMakeLists.txt || git submodule update --init --recursive -- vamos-compiler
 
 
@@ -51,7 +52,7 @@ endif
 sources-config: shamon sources-init dynamorio
 	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dshamon_DIR=../shamon/cmake/shamon -DDynamoRIO_DIR=$(DynamoRIO_DIR) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
 
-sources-init:
+sources-init: shamon-init
 	test -f vamos-sources/CMakeLists.txt || git submodule update --init --recursive -- vamos-sources
 
 
