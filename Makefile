@@ -9,16 +9,6 @@ endif
 
 all: buffers compiler sources
 
-reconfigure:
-	rm -f vamos-buffers/CMakeCache.txt
-	rm -f vamos-compiler/CMakeCache.txt
-	rm -f vamos-sources/CMakeCache.txt
-	test -f vamos-sources/ext/dynamorio/build/CMakeCache.txt && rm -f vamos-sources/ext/dynamorio/build/CMakeCache.txt
-	rm -f experiments/CMakeCache.txt
-	make buffers-config
-	make compiler-config
-	make sources-config
-
 buffers: buffers-config
 	+make -C vamos-buffers
 
@@ -71,3 +61,20 @@ clean:
 	make clean -C vamos-sources
 	make clean -C vamos-compiler
 	test -d experiments && make clean -C experiments
+
+reconfigure:
+	rm -f vamos-buffers/CMakeCache.txt
+	rm -f vamos-compiler/CMakeCache.txt
+	rm -f vamos-sources/CMakeCache.txt
+	test -f vamos-sources/ext/dynamorio/build/CMakeCache.txt && rm -f vamos-sources/ext/dynamorio/build/CMakeCache.txt
+	rm -f experiments/CMakeCache.txt
+	make buffers-config
+	make compiler-config
+	make sources-config
+
+
+
+reset:
+	cd vamos-buffers && git clean -Xdf
+	cd vamos-compiler && git clean -Xdf
+	cd vamos-sources && git clean -Xdf
