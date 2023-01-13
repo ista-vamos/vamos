@@ -48,7 +48,7 @@ sources-init: buffers-init
 
 
 fase23-experiments-config: buffers
-	test -f fase23-experiments/CMakeLists.txt || git clone git@github.com:ista-vamos/fase23-experiments.git
+	test -f fase23-experiments/CMakeLists.txt || git clone https://github.com/ista-vamos/fase23-experiments.git
 	cd fase23-experiments && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -Dvamos_sources_DIR=../vamos-sources -Dvamos_compiler_DIR=../vamos-compiler -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)) || git clean -xdf
 
 fase23-experiments: fase23-experiments-config all
