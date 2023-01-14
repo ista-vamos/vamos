@@ -75,6 +75,6 @@ reconfigure:
 
 
 reset:
-	cd vamos-buffers && git clean -Xdf
-	cd vamos-compiler && git clean -Xdf
-	cd vamos-sources && git clean -Xdf
+	cd vamos-buffers && git clean -xdf
+	cd vamos-compiler && git clean -xdf
+	cd vamos-sources && git clean -xdf
