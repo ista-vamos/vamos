@@ -7,3 +7,6 @@
 [submodule "vamos-buffers"]
 	path = vamos-buffers
 	url = https://github.com/ista-vamos/vamos-buffers
+[submodule "vamos-monitors"]
+	path = vamos-monitors
+	url = https://github.com/ista-vamos/vamos-monitors

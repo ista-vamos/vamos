@@ -7,7 +7,7 @@ else
 DynamoRIO_DIR := "ext/dynamorio/build/cmake"
 endif
 
-all: buffers compiler sources
+all: buffers compiler sources monitors
 
 buffers: buffers-config
 	+make -C vamos-buffers
@@ -46,6 +46,16 @@ sources-config: buffers sources-init dynamorio
 sources-init: buffers-init
 	test -f vamos-sources/CMakeLists.txt || git submodule update --init --recursive -- vamos-sources
 
+monitors: monitors-config
+	+make -C vamos-monitors
+
+monitors-config: buffers monitors-init
+	cd vamos-monitors && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
+
+# make inits dependent, because git locks config file
+monitors-init: sources-init
+	test -f vamos-monitors/CMakeLists.txt || git submodule update --init --recursive -- vamos-monitors
+
 
 fase23-experiments-config: buffers
 	test -f fase23-experiments/CMakeLists.txt || git clone https://github.com/ista-vamos/fase23-experiments.git
@@ -60,17 +70,20 @@ clean:
 	make clean -C vamos-buffers
 	make clean -C vamos-sources
 	make clean -C vamos-compiler
+	make clean -C vamos-monitors
 	test -d experiments && make clean -C experiments
 
 reconfigure:
 	rm -f vamos-buffers/CMakeCache.txt
 	rm -f vamos-compiler/CMakeCache.txt
 	rm -f vamos-sources/CMakeCache.txt
-	test -f vamos-sources/ext/dynamorio/build/CMakeCache.txt && rm -f vamos-sources/ext/dynamorio/build/CMakeCache.txt
+	rm -f vamos-monitors/CMakeCache.txt
+	- test -f vamos-sources/ext/dynamorio/build/CMakeCache.txt && rm -f vamos-sources/ext/dynamorio/build/CMakeCache.txt
 	rm -f experiments/CMakeCache.txt
 	make buffers-config
 	make compiler-config
 	make sources-config
+	make monitors-config
 
 
 
@@ -78,3 +91,4 @@ reset:
 	cd vamos-buffers && git clean -xdf
 	cd vamos-compiler && git clean -xdf
 	cd vamos-sources && git clean -xdf
+	cd vamos-monitors && git clean -xdf
