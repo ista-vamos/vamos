@@ -6,6 +6,8 @@ BUILD_DRIO := "yes"
 else
 DynamoRIO_DIR := "ext/dynamorio/build/cmake"
 endif
+TESSLA_SUPPORT := $(if $(TESSLA_SUPPORT),$(TESSLA_SUPPORT),"OFF")
+DOWNLOAD_TESSLA_RUST_JAR := $(if $(TESSLA_SUPPORT),"ON", "OFF")
 
 all: buffers compiler sources monitors
 
@@ -23,7 +25,7 @@ compiler: compiler-config
 	+make -C vamos-compiler
 
 compiler-config: buffers compiler-init
-	cd vamos-compiler && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
+	cd vamos-compiler && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)  -DDOWNLOAD_TESSLA_RUST_JAR=$(DOWNLOAD_TESSLA_RUST_JAR) $(COMPILER_OPTS))
 
 # make inits dependent, because git locks config file
 compiler-init: sources-init
@@ -74,12 +76,12 @@ clean:
 	test -d experiments && make clean -C experiments
 
 reconfigure:
-	rm -f vamos-buffers/CMakeCache.txt
-	rm -f vamos-compiler/CMakeCache.txt
-	rm -f vamos-sources/CMakeCache.txt
-	rm -f vamos-monitors/CMakeCache.txt
-	- test -f vamos-sources/ext/dynamorio/build/CMakeCache.txt && rm -f vamos-sources/ext/dynamorio/build/CMakeCache.txt
-	rm -f experiments/CMakeCache.txt
+	-rm -f vamos-buffers/CMakeCache.txt
+	-rm -f vamos-compiler/CMakeCache.txt
+	-rm -f vamos-sources/CMakeCache.txt
+	-rm -f vamos-monitors/CMakeCache.txt
+	-rm -f vamos-sources/ext/dynamorio/build/CMakeCache.txt
+	-rm -f fase23-experiments/CMakeCache.txt
 	make buffers-config
 	make compiler-config
 	make sources-config
