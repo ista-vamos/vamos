@@ -55,7 +55,7 @@ monitors-config: buffers monitors-init
 	cd vamos-monitors && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
 
 # make inits dependent, because git locks config file
-monitors-init: sources-init
+monitors-init: compiler-init
 	test -f vamos-monitors/CMakeLists.txt || git submodule update --init --recursive -- vamos-monitors
 
 
