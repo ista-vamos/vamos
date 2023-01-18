@@ -1,11 +1,14 @@
 CC=clang
 BUILD_TYPE := $(if $(BUILD_TYPE),$(BUILD_TYPE),"RelWithDebInfo")
 DYNAMORIO_SOURCES := $(if $(DYNAMORIO_SOURCES),$(DYNAMORIO_SOURCES),"ON")
-ifdef $(DynamoRIO_DIR)
+
+ifeq ($(DYNAMORIO_SOURCES), "ON")
+ifndef DynamoRIO_DIR
 BUILD_DRIO := "yes"
-else
 DynamoRIO_DIR := "ext/dynamorio/build/cmake"
 endif
+endif
+
 TESSLA_SUPPORT := $(if $(TESSLA_SUPPORT),$(TESSLA_SUPPORT),"OFF")
 DOWNLOAD_TESSLA_RUST_JAR := $(if $(TESSLA_SUPPORT),"ON", "OFF")
 
@@ -36,10 +39,12 @@ sources: buffers sources-config
 	+make -C vamos-sources
 
 dynamorio: sources-init
-ifdef $(BUILD_DRIO)
+ifdef BUILD_DRIO
 	+make -C vamos-sources/ext dynamorio
 else
+ifeq ($(DYNAMORIO_SOURCES), "ON")
 	@echo "Using DynamoRIO_DIR = $(DynamoRIO_DIR)"
+endif
 endif
 
 sources-config: buffers sources-init dynamorio
