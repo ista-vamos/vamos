@@ -9,8 +9,15 @@ DynamoRIO_DIR := "ext/dynamorio/build/cmake"
 endif
 endif
 
-TESSLA_SUPPORT := $(if $(TESSLA_SUPPORT),$(TESSLA_SUPPORT),"OFF")
-DOWNLOAD_TESSLA_RUST_JAR := $(if $(TESSLA_SUPPORT),"ON", "OFF")
+ifndef TESSLA_SUPPORT
+TESSLA_SUPPORT := "ON"
+endif
+
+ifeq ($(TESSLA_SUPPORT), "ON")
+DOWNLOAD_TESSLA_RUST_JAR := "ON"
+else
+DOWNLOAD_TESSLA_RUST_JAR := "OFF"
+endif
 
 all: buffers compiler sources monitors
 
