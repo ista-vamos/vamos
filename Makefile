@@ -1,6 +1,10 @@
-CC=clang
-BUILD_TYPE := $(if $(BUILD_TYPE),$(BUILD_TYPE),"RelWithDebInfo")
-DYNAMORIO_SOURCES := $(if $(DYNAMORIO_SOURCES),$(DYNAMORIO_SOURCES),"ON")
+CONFIG:=Makefile.config
+-include $(CONFIG)
+
+CC ?= "clang"
+BUILD_TYPE ?= "RelWithDebInfo"
+DYNAMORIO_SOURCES ?= "ON"
+TESSLA_SUPPORT ?= "ON"
 
 ifeq ($(DYNAMORIO_SOURCES), "ON")
 ifndef DynamoRIO_DIR
@@ -9,22 +13,28 @@ DynamoRIO_DIR := "ext/dynamorio/build/cmake"
 endif
 endif
 
-ifndef TESSLA_SUPPORT
-TESSLA_SUPPORT := "ON"
-endif
-
 ifeq ($(TESSLA_SUPPORT), "ON")
 DOWNLOAD_TESSLA_RUST_JAR := "ON"
 else
 DOWNLOAD_TESSLA_RUST_JAR := "OFF"
 endif
 
-all: buffers compiler sources monitors
+all: export_config buffers compiler sources monitors
+
+# dump current config into a file that will be used on the next run
+export_config:
+	@echo "CC:=$(CC)" > $(CONFIG)
+	@echo "BUILD_TYPE:=$(BUILD_TYPE)" >> $(CONFIG)
+	@echo "DYNAMORIO_SOURCES:=$(DYNAMORIO_SOURCES)" >> $(CONFIG)
+	@echo "TESSLA_SUPPORT:=$(TESSLA_SUPPORT)" >> $(CONFIG)
+	@echo "Config has been written to $(CONFIG)"
+
+.PHONY: all export_config
 
 buffers: buffers-config
 	+make -C vamos-buffers
 
-buffers-config: buffers-init
+buffers-config: export_config buffers-init
 	cd vamos-buffers && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SHAMON_OPTS))
 
 buffers-init:
@@ -34,7 +44,7 @@ buffers-init:
 compiler: compiler-config
 	+make -C vamos-compiler
 
-compiler-config: buffers compiler-init
+compiler-config: export_config buffers compiler-init
 	cd vamos-compiler && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)  -DDOWNLOAD_TESSLA_RUST_JAR=$(DOWNLOAD_TESSLA_RUST_JAR) $(COMPILER_OPTS))
 
 # make inits dependent, because git locks config file
@@ -54,7 +64,7 @@ ifeq ($(DYNAMORIO_SOURCES), "ON")
 endif
 endif
 
-sources-config: buffers sources-init dynamorio
+sources-config: export_config buffers sources-init dynamorio
 	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DDYNAMORIO_SOURCES=$(DYNAMORIO_SOURCES) -DDynamoRIO_DIR=$(DynamoRIO_DIR) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
 
 sources-init: buffers-init
@@ -63,7 +73,7 @@ sources-init: buffers-init
 monitors: monitors-config
 	+make -C vamos-monitors
 
-monitors-config: buffers monitors-init
+monitors-config: export_config buffers monitors-init
 	cd vamos-monitors && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
 
 # make inits dependent, because git locks config file
@@ -71,7 +81,7 @@ monitors-init: compiler-init
 	test -f vamos-monitors/CMakeLists.txt || git submodule update --init --recursive -- vamos-monitors
 
 
-fase23-experiments-config: buffers
+fase23-experiments-config: export_config buffers
 	test -f fase23-experiments/CMakeLists.txt || git clone https://github.com/ista-vamos/fase23-experiments.git
 	cd fase23-experiments && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -Dvamos_sources_DIR=../vamos-sources -Dvamos_compiler_DIR=../vamos-compiler -DCMAKE_BUILD_TYPE=$(BUILD_TYPE)) || git clean -xdf
 
@@ -98,8 +108,6 @@ reconfigure:
 	make compiler-config
 	make sources-config
 	make monitors-config
-
-
 
 reset:
 	cd vamos-buffers && git clean -xdf
