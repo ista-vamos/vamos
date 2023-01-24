@@ -88,7 +88,7 @@ fase23-experiments-config: export_config buffers
 fase23-experiments: fase23-experiments-config all
 	# FIXME: change this to use HTTPS after making it public
 	make -C fase23-experiments
-	echo -e "\n## Now you can go to the folder fase23-experiments and follow the README.md ##\n"
+	echo -e "\n## Now you can go to the folder fase23-experiments and follow README there ##\n"
 
 clean:
 	make clean -C vamos-buffers
