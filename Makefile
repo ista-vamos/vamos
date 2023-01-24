@@ -2,6 +2,7 @@ CONFIG:=Makefile.config
 -include $(CONFIG)
 
 CC ?= "clang"
+CXX ?= "clang++"
 BUILD_TYPE ?= "RelWithDebInfo"
 DYNAMORIO_SOURCES ?= "ON"
 TESSLA_SUPPORT ?= "ON"
@@ -24,6 +25,7 @@ all: export_config buffers compiler sources monitors
 # dump current config into a file that will be used on the next run
 export_config:
 	@echo "CC:=$(CC)" > $(CONFIG)
+	@echo "CXX:=$(CXX)" >> $(CONFIG)
 	@echo "BUILD_TYPE:=$(BUILD_TYPE)" >> $(CONFIG)
 	@echo "DYNAMORIO_SOURCES:=$(DYNAMORIO_SOURCES)" >> $(CONFIG)
 	@echo "TESSLA_SUPPORT:=$(TESSLA_SUPPORT)" >> $(CONFIG)
