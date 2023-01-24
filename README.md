@@ -16,10 +16,11 @@ make [OPTIONS]
  - `DynamoRIO_DIR=<path/to/dynamorio/cmake>` to use a particular DynamoRIO build
  - `TESSLA_SUPPORT=[ON|OFF]` enable support for TeSSLa monitors
 
-The used OPTIONS are stored into `Makefile.config` and re-used in future `make` runs.
-If you want to change the options, either delete the file or change values in there
-and run `make reconfigure` or `make reset` (warning: the latter will completely clean
-repositories, including all files that are not under git).
+The used OPTIONS are stored into `Makefile.config` and re-used in future `make`
+runs. If you want to change the options, either delete the file or change
+values in there and run `make reconfigure && make` or `make reset && make`
+(warning: the latter will completely clean repositories, including all files
+that are not under git).
 
 ## Components
 
