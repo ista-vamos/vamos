@@ -31,7 +31,7 @@ export_config:
 	@echo "TESSLA_SUPPORT:=$(TESSLA_SUPPORT)" >> $(CONFIG)
 	@echo "Config has been written to $(CONFIG)"
 
-.PHONY: all export_config
+.PHONY: all export_config docs
 
 buffers: buffers-config
 	+make -C vamos-buffers
@@ -116,3 +116,6 @@ reset:
 	cd vamos-compiler && git clean -xdf
 	cd vamos-sources && git clean -xdf
 	cd vamos-monitors && git clean -xdf
+
+docs:
+	cd .mdbook && mdbook build -d ../docs

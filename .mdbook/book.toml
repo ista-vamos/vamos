@@ -1,0 +1,6 @@
+[book]
+authors = ["Marek Chalupa"]
+language = "en"
+multilingual = false
+src = "."
+title = "VAMOS documentation"
