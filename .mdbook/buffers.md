@@ -7,7 +7,7 @@ There are several different types of buffers: TBD
 
 ## Implementation
 
-The implementation of buffers is in its own [repository]()
-and its documentations is [here](./vamos-buffers/intro.md)
+The implementation of buffers is in its own [repository](https://github.com/ista-vamos/vamos-buffers)
+and its documentations is [here](./vamos-buffers/intro.md).
 
 
