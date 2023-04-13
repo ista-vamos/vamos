@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> About</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="buffers.html" class="active"><strong aria-hidden="true">3.</strong> Buffers</a></li><li class="chapter-item expanded "><a href="sources.html"><strong aria-hidden="true">4.</strong> Sources</a></li><li class="chapter-item expanded "><a href="compiler.html"><strong aria-hidden="true">5.</strong> Compiler</a></li><li class="chapter-item expanded "><a href="monitors.html"><strong aria-hidden="true">6.</strong> Monitors</a></li><li class="chapter-item expanded "><a href="vamos-spec.html"><strong aria-hidden="true">7.</strong> vamos-spec</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> About</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="buffers.html" class="active"><strong aria-hidden="true">3.</strong> Buffers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-buffers/intro.html"><strong aria-hidden="true">3.1.</strong> vamos-buffers</a></li></ol></li><li class="chapter-item expanded "><a href="sources.html"><strong aria-hidden="true">4.</strong> Sources</a></li><li class="chapter-item expanded "><a href="compiler.html"><strong aria-hidden="true">5.</strong> Compiler</a></li><li class="chapter-item expanded "><a href="monitors.html"><strong aria-hidden="true">6.</strong> Monitors</a></li><li class="chapter-item expanded "><a href="vamos-spec.html"><strong aria-hidden="true">7.</strong> vamos-spec</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,6 +145,12 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="buffers"><a class="header" href="#buffers">Buffers</a></h1>
+<p>VAMOS uses shared-memory ring buffers to transmit events from event sources
+to processors and monitors.</p>
+<p>There are several different types of buffers: TBD</p>
+<h2 id="implementation"><a class="header" href="#implementation">Implementation</a></h2>
+<p>The implementation of buffers is in its own <a href="">repository</a>
+and its documentations is <a href="./vamos-buffers/intro.html">here</a></p>
 
                     </main>
 
@@ -154,7 +160,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="sources.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="vamos-buffers/intro.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -168,7 +174,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="sources.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="vamos-buffers/intro.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
