@@ -8,3 +8,7 @@
 - [Compiler](./compiler.md)
 - [Monitors](./monitors.md)
 - [vamos-spec](./vamos-spec.md)
+  - [Spec design](./vamos-spec/design.md)
+    - [Types](./vamos-spec/design/types.md)
+    - [Keywords](./vamos-spec/design/keywords.md)
+
