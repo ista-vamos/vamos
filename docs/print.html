@@ -84,7 +84,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> About</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="buffers.html"><strong aria-hidden="true">3.</strong> Buffers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-buffers/intro.html"><strong aria-hidden="true">3.1.</strong> vamos-buffers</a></li></ol></li><li class="chapter-item expanded "><a href="sources.html"><strong aria-hidden="true">4.</strong> Sources</a></li><li class="chapter-item expanded "><a href="compiler.html"><strong aria-hidden="true">5.</strong> Compiler</a></li><li class="chapter-item expanded "><a href="monitors.html"><strong aria-hidden="true">6.</strong> Monitors</a></li><li class="chapter-item expanded "><a href="vamos-spec.html"><strong aria-hidden="true">7.</strong> vamos-spec</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> About</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="buffers.html"><strong aria-hidden="true">3.</strong> Buffers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-buffers/intro.html"><strong aria-hidden="true">3.1.</strong> vamos-buffers</a></li></ol></li><li class="chapter-item expanded "><a href="sources.html"><strong aria-hidden="true">4.</strong> Sources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-sources/intro.html"><strong aria-hidden="true">4.1.</strong> vamos-sources</a></li></ol></li><li class="chapter-item expanded "><a href="compiler.html"><strong aria-hidden="true">5.</strong> Compilers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-monitors/compiler.html"><strong aria-hidden="true">5.1.</strong> vamos-compiler</a></li></ol></li><li class="chapter-item expanded "><a href="monitors.html"><strong aria-hidden="true">6.</strong> Monitors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-monitors/intro.html"><strong aria-hidden="true">6.1.</strong> vamos-monitors</a></li></ol></li><li class="chapter-item expanded "><a href="hyper.html"><strong aria-hidden="true">7.</strong> Hypertraces</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-hyper/intro.html"><strong aria-hidden="true">7.1.</strong> vamos-hyper</a></li></ol></li><li class="chapter-item expanded "><a href="vamos-spec.html"><strong aria-hidden="true">8.</strong> vamos-spec</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-spec/examples.html"><strong aria-hidden="true">8.1.</strong> Examples</a></li><li class="chapter-item expanded "><a href="vamos-spec/overview.html"><strong aria-hidden="true">8.2.</strong> Overview</a></li><li class="chapter-item expanded "><a href="vamos-spec/design.html"><strong aria-hidden="true">8.3.</strong> Elements</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-spec/design/types.html"><strong aria-hidden="true">8.3.1.</strong> Types</a></li><li class="chapter-item expanded "><a href="vamos-spec/design/keywords.html"><strong aria-hidden="true">8.3.2.</strong> Keywords</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="mpt.html"><strong aria-hidden="true">9.</strong> Prefix transducers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-mpt/intro.html"><strong aria-hidden="true">9.1.</strong> vamos-mpt</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -198,9 +198,447 @@ configuring).</p>
 <h2 id="api-documentation"><a class="header" href="#api-documentation">API documentation</a></h2>
 <p>TBD</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="sources"><a class="header" href="#sources">Sources</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vamos-sources"><a class="header" href="#vamos-sources">vamos-sources</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="compiler"><a class="header" href="#compiler">Compiler</a></h1>
+<p>VAMOS has several compilers that generate code and monitors for different use cases.</p>
+<h3 id="vamos-compiler"><a class="header" href="#vamos-compiler">vamos-compiler</a></h3>
+<p>One compiler is <code>vamosc</code> in the repository
+<a href="https://github.com/ista-vamos/vamos-compiler">vamos-compiler</a>.  This compiler
+takes a description how to transform multiple input streams into a single
+output stream that can be analyzed either by an external monitor or by a
+monitor written in the same specification language as the transformation.</p>
+<p>Publication: <a href="https://link.springer.com/chapter/10.1007/978-3-031-30826-0_15">VAMOS: Middleware for Best-Effort Third-Party Monitoring</a></p>
+<h3 id="vamos-mpt"><a class="header" href="#vamos-mpt">vamos-mpt</a></h3>
+<p>Compile a specification of a multi-trace prefix transducer into C++ code.
+There is a work-in-progress to generate code that attaches the MPTs to
+vamos sources. One can always write the code to attach to the sources by hand
+at this moment. The compiler is in the repository
+<a href="https://github.com/ista-vamos/vamos-mpt">vamos-mpt</a></p>
+<h3 id="wip-vamos-specvamos-hyper"><a class="header" href="#wip-vamos-specvamos-hyper">[WIP] vamos-spec/vamos-hyper</a></h3>
+<p>We have a work-in-progress language for specification of hypertrace transformations.
+One can see <code>vamos-mpt</code> as its simplified version.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vamos-compiler-1"><a class="header" href="#vamos-compiler-1">vamos-compiler</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="monitors"><a class="header" href="#monitors">Monitors</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vamos-monitors"><a class="header" href="#vamos-monitors">vamos-monitors</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hypertraces"><a class="header" href="#hypertraces">Hypertraces</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vamos-hyper"><a class="header" href="#vamos-hyper">vamos-hyper</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vamos-spec"><a class="header" href="#vamos-spec">vamos-spec</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="examples"><a class="header" href="#examples">Examples</a></h1>
+<pre><code class="language-vamos">Event valX;
+Event valY;
+Event valZ { x: Int32 }
+
+Trace Observations = [valX, valY, valZ, mode: {x: Int8}];
+
+in observations : {Observations ...};
+out compl(observations) : {Accesses};
+
+def compl {
+  in T: {Observations, Accesses ...};
+  out O: {Accesses ...};
+
+  forall t in T where t[0] == Observations::mode(1) {
+    forall t2, t3 in T where t2 != t &amp;&amp; t2[0] == t[0] {
+      transform t, t2, t3 -&gt; t4, t5 {
+        t: a,
+        t2: a valX,
+        t3: b valZ(x)
+        where x &gt; 0 {
+          yield valX to t4;
+          yield valX to t5;
+        }
+
+        t: a, t2: b { yield a; }
+      }
+
+      out t, t4, t5;
+      out (compl2.compl1)(t, compl(t4,t5));
+    }
+  }
+}
+
+</code></pre>
+<pre><code class="language-vamos">Event valX;
+Event valY;
+Event valZ;
+Event mode1, mode2 { x: Int8 }
+
+Data valZ { x: Int32};
+Data valZ, valX { x: Int32};
+
+Trace Observations = [valX: {}, valY:{}, valZ:{}, mode: {x: Int8}, mode1 ];
+
+in observations : {Observations};
+out (Order . compl)(observations) : {Accesses};
+
+def compl {
+  in T: {Observations};
+
+  forall t in traces where t[0] == mode(1, 2) {
+    forall t2, t3 in traces where t2 != t &amp;&amp; t2[0] == t[0] {
+      transform t, t2, t3 -&gt; t4, t5 {
+        t: a,
+        t2: a valX {
+          yield valX to t4;
+        }
+      }
+
+      transform t -&gt; t {
+        t: b { yield c; }
+        if same &gt; 0 {
+          t: a where same == 0 { yield r; }
+          t: a where x { yield r; }
+        }
+      }
+
+      out t;
+      out t4, t5;
+    }
+  }
+}
+
+-- select t, t2, t3
+--   from traces, (select x, y from traces where x != t &amp;&amp; y[0] == t[0] limit 1)
+-- forall t in traces where t[0] == mode(1) {
+  -- exist t2, t3 in traces where t2 != t &amp;&amp; t2[0] == t[0]
+   -- select t2, t3 from traces where t2 != t &amp;&amp; t2[0] == t[0] limit 1
+   -- &amp;&amp; iter t2, t3 {
+   --   t2 ~ m@{_ * valX}, t3 ~ n@{_* valX} where m == n
+   -- }
+
+
+-- def Order {
+--   in T: {Accesses};
+--   out O1, O2: {Accesses};
+--
+--   -- take a hyper trace, transform it into another hyper trace (for the next
+--   -- step) and an output element of the new hyper(trace)
+--   htransform T -&gt; F, G {
+--      let t = first 3 from T as x, y, z
+--              where x[0] ~ input(2);
+--      foreach e in t[0] {
+--         push e;
+--      }
+--
+--      foreach e in T[0] {
+--        if e ~ input(x) {
+--          push e;
+--          -- what if I want to split the stream?
+--          -- and access the split streams later?
+--
+--          -- push e to hypertrace T to trace of the same id as trace(e)
+--          push e to O1.;
+--          -- push e to (possibly new) hypertrace T with &quot;id&quot; n
+--          push e to T.n;
+--        }
+--        consume e; -- from which trace??
+--      }
+--      yield;
+--   }
+-- }
+
+</code></pre>
+<pre><code class="language-vamos">Trace trace = [input: {val: Int32},
+               update: {val: Int32},
+               action: {}];
+
+in traces: {Trace};
+out monitor(traces);
+
+def od(pi: Trace, pi': Trace) -&gt; Bool {
+  var same : Bool = false;
+
+  transform pi, pi' -&gt; () {
+    pi:  _* update(val)  | ,
+    pi': _* update(val2) | where same {
+       if val != val2 {
+          error &quot;Observational determinism violated&quot;;
+       }
+    }
+
+    pi:  _* input(val) |,
+    pi': _* input(val) | {
+        same = true;
+    }
+  }
+}
+
+def monitor(traces: {Trace}) -&gt; Bool {
+  forall t1, t2 in traces {
+    od(t1, t2);
+  }
+}
+
+
+def monitor2(traces: {Trace}) -&gt; Bool {
+  forall t1, t2 in traces {
+    if !od(t1, t2) {
+      return false;
+    }
+  }
+
+  return true;
+}
+</code></pre>
+<pre><code class="language-vamos">import sha256;
+
+Event input, output { x: UInt64 }
+Event other;
+
+Event IOPair {
+  i: UInt64;
+  o: UInt64;
+}
+
+Trace trace = [input, output, other];
+
+in traces : {trace ...};
+
+def split {
+  in traces : {trace ...};
+
+  forall t in traces {   -- SELECT t FROM traces
+    transform t -&gt; ti, to {
+      t: ev {
+        match ev with {
+          input  =&gt; yield ev to ti;
+          output =&gt; yield ev to to;
+        }
+      }
+    }
+
+    transform ti, to -&gt; pi {
+      var mdI = sha256.create();
+      var mdO = sha256.create();
+
+      ti: input(x)  { mdI.update(x); }
+      to: output(x) { mdO.update(x); }
+      ti, to: $ {
+          yield IOPair(mdO.get(), mdI.get()) to pi;
+      }
+    }
+    out pi;
+  }
+}
+
+def monitor(iotrace) {
+  in iotrace: [IOPair];
+  var iomap: Map[UInt64, UInt64];
+
+  transform iotrace -&gt; () {
+    iotrace: IOPair(i, o) {
+      if iomap.has(i) {
+        if iomap.get(i) != o {
+          error(&quot;OD violated&quot;);
+        }
+      } else {
+        iomap.insert(i, o);
+      }
+    }
+  }
+}
+</code></pre>
+<pre><code class="language-vamos">Event valX, valY, valZ {
+    x: Int32
+}
+
+Event mode {
+    m: Int32
+}
+
+Trace Observations [valX, valY, valZ] {}
+
+in traces: {Observations};
+
+out (Monitor . ModesSwitch . StutterReduce)(traces)
+
+def sred: Observations -&gt; Observations {
+  in t: Observations;
+
+  iter t {
+    t: e e* | !e {
+      yield e;
+    }
+  }
+}
+
+def StutterReduce : {Observations} -&gt; {Observations} {
+  in traces: {Observations};
+
+  forall t in traces {
+    out sred(t);
+  }
+}
+
+-- filter events based on mode
+def modesw(t: Observations) -&gt; Observations {
+  var mode : Int32 = 0;
+
+  transform t {
+    t: e@mode(x) {
+      mode = x;
+      yield e;
+    }
+
+    t: e where mode == 0 {
+      yield e;
+    }
+
+    if mode &gt; 0 {
+      t: valX where mode == 2 {
+        yield e;
+      }
+
+      t: valY where mode in (1, 2) {
+        yield e;
+      }
+
+      t: valZ where mode == 3 {
+        yield e;
+      }
+    }
+  }
+}
+
+-- same as `foreach t in INPUT { out modesw(t); }`
+let ModesSwitch = hlift(modesw);
+
+-- automatically takes as input the outputs of the traces/model generator
+def Monitor(traces) {
+  foreach t1, t2 in traces where t1[^0] == t2[^0] {
+    iter {
+      t1 ~ a@_#[0..] mode(x)#[2..4] |,
+      t2 ~ b@_* mode(y) |
+      {
+         if t1[a] != t2[b] {
+                 error &quot;Observational determinism violated&quot;
+         }
+      }
+    }
+  }
+}
+
+</code></pre>
+<pre><code class="language-vamos">Stream Trace : [input: {val: Int32;},
+                update: {val: Int32;}] {
+}
+
+in traces: {Trace};
+out monitor(traces);
+
+
+def suff(pi: Trace, pi': Trace) -&gt; {Trace} {
+  # output sequences from the traces that start with the same
+  # input util theres another input
+  forall m1@{input(val) _* {input + $}} in pi,
+         m2@{input(val) _* {input + $}} in pi' {
+    out(zipd(pi[m1-1], pi'[m2-1], nil));
+  }
+}
+
+
+def monitor(traces) {
+    forall t1, t2 in traces.
+    forall s in suff(t1, t2).
+    forall x in s. x_0 == x_1
+}
+
+-- pi:  i(3) u(2) u(1) i(2) u(2) u(1)
+-- pi': i(2) u(2) u(1) i(2) u(2)
+-- -----------------------------------
+--
+-- out_1: (i(2), i(2)) (u(2), u(2)) (u(1), u(1))
+-- out_2: (i(2), i(2)) (u(2), u(2)) (u(1), nil)
+
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="overview"><a class="header" href="#overview">Overview</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="spec-design"><a class="header" href="#spec-design">Spec design</a></h1>
+<p>Notes about the design of the spec language</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="types"><a class="header" href="#types">Types</a></h1>
+<h2 id="primitive-types"><a class="header" href="#primitive-types">Primitive types</a></h2>
+<pre><code>Bool
+Int{8, 16, 32, 64}
+UInt{8, 16, 32, 64}
+Float{32, 64}
+Void
+</code></pre>
+<h2 id="composite-types"><a class="header" href="#composite-types">Composite types</a></h2>
+<h3 id="struct-types"><a class="header" href="#struct-types">Struct types</a></h3>
+<pre><code>Data
+Event
+</code></pre>
+<p>BasicSubtype ::= PrimitiveType | StructType</p>
+<h3 id="sequential-types"><a class="header" href="#sequential-types">Sequential types</a></h3>
+<pre><code>Vector
+String
+
+Stream[BasicSubtype+]
+</code></pre>
+<p>MappableType ::= PrimitiveType | StructType | SequentialType</p>
+<h3 id="collection-types"><a class="header" href="#collection-types">Collection types</a></h3>
+<pre><code>Map[BasicSubtype, Type]
+Set[Type]
+</code></pre>
+<h3 id="special-types"><a class="header" href="#special-types">Special types</a></h3>
+<pre><code>Trace[BasicSubtype+]
+HyperTrace[TraceType+]
+View[Type]
+IndexedView[Type]
+</code></pre>
+<p>We strictly differentiate between streams and traces. Stream is a sequence of events or data points,
+a trace is a logical object that represents such a sequence.
+The main difference is that iteration over a stream means iterating over a sequence
+and thus the generated program takes one element after another.
+For traces, we can only specify what to do for all elements and thus the generated program
+will lazily and incrementally evaluate the specification over the trace.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="keywords"><a class="header" href="#keywords">Keywords</a></h1>
+<pre><code>in
+out
+var
+let
+if else
+where
+def
+match
+foreach
+forall
+exist
+select
+iter
+</code></pre>
+<h3 id="in-out"><a class="header" href="#in-out">in, out</a></h3>
+<pre><code>in [stream]
+out [stream]
+
+foreach [x] in [iterable]
+
+out trace  -- output a trace in a hypertrace transformer
+</code></pre>
+<h3 id="let-var"><a class="header" href="#let-var">let, var</a></h3>
+<pre><code>let x [: type] = [expr];
+var y [: type] [= expr];
+</code></pre>
+<p><code>let</code> binds an immutable reference, a name of a value.
+<code>var</code> defines a new variable that can be modified.</p>
+<h3 id="if-else"><a class="header" href="#if-else">if-else</a></h3>
+<pre><code>if [bool] {expr} [else {expr}]?
+
+let y = if c {3} else {5};
+</code></pre>
+<h3 id="iter"><a class="header" href="#iter">iter</a></h3>
+<pre><code>transform [name]* [-&gt; [name*]] { rule+ }
+</code></pre>
+<p>Iteratively match rules on a trace or several traces. All traces that are in the local scope can be matched
+or a list of allowed traces to match is used. The matching ends if matching fails,
+or the matching is explicitely terminated, or all traces are entirely read (that is why we can explicitely specify
+what traces we can iterate through -- there might be more traces in the local scope than we want to use).
+In the latter case, if there is a rule that matches (&quot;consumes&quot;) the end of traces is evaluated before finishing matching.</p>
+<p>Rules can be nested inside <code>if-else</code> expressions.</p>
+<h3 id="forall-exist-select"><a class="header" href="#forall-exist-select">forall, exist, select</a></h3>
+<p>For specifying traces in a hypertraces. forall is clear, exist = select limit 1. Select is like forall but can
+apply only a limited number of traces and maybe some more things?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="prefix-transducers"><a class="header" href="#prefix-transducers">Prefix transducers</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vamos-mpt-1"><a class="header" href="#vamos-mpt-1">vamos-mpt</a></h1>
 
                     </main>
 

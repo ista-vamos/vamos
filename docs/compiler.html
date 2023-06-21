@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Compiler - VAMOS documentation</title>
+        <title>Compilers - VAMOS documentation</title>
 
 
         <!-- Custom HTML head -->
@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> About</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="buffers.html"><strong aria-hidden="true">3.</strong> Buffers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-buffers/intro.html"><strong aria-hidden="true">3.1.</strong> vamos-buffers</a></li></ol></li><li class="chapter-item expanded "><a href="sources.html"><strong aria-hidden="true">4.</strong> Sources</a></li><li class="chapter-item expanded "><a href="compiler.html" class="active"><strong aria-hidden="true">5.</strong> Compiler</a></li><li class="chapter-item expanded "><a href="monitors.html"><strong aria-hidden="true">6.</strong> Monitors</a></li><li class="chapter-item expanded "><a href="vamos-spec.html"><strong aria-hidden="true">7.</strong> vamos-spec</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="about.html"><strong aria-hidden="true">1.</strong> About</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">2.</strong> Getting started</a></li><li class="chapter-item expanded "><a href="buffers.html"><strong aria-hidden="true">3.</strong> Buffers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-buffers/intro.html"><strong aria-hidden="true">3.1.</strong> vamos-buffers</a></li></ol></li><li class="chapter-item expanded "><a href="sources.html"><strong aria-hidden="true">4.</strong> Sources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-sources/intro.html"><strong aria-hidden="true">4.1.</strong> vamos-sources</a></li></ol></li><li class="chapter-item expanded "><a href="compiler.html" class="active"><strong aria-hidden="true">5.</strong> Compilers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-monitors/compiler.html"><strong aria-hidden="true">5.1.</strong> vamos-compiler</a></li></ol></li><li class="chapter-item expanded "><a href="monitors.html"><strong aria-hidden="true">6.</strong> Monitors</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-monitors/intro.html"><strong aria-hidden="true">6.1.</strong> vamos-monitors</a></li></ol></li><li class="chapter-item expanded "><a href="hyper.html"><strong aria-hidden="true">7.</strong> Hypertraces</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-hyper/intro.html"><strong aria-hidden="true">7.1.</strong> vamos-hyper</a></li></ol></li><li class="chapter-item expanded "><a href="vamos-spec.html"><strong aria-hidden="true">8.</strong> vamos-spec</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-spec/examples.html"><strong aria-hidden="true">8.1.</strong> Examples</a></li><li class="chapter-item expanded "><a href="vamos-spec/overview.html"><strong aria-hidden="true">8.2.</strong> Overview</a></li><li class="chapter-item expanded "><a href="vamos-spec/design.html"><strong aria-hidden="true">8.3.</strong> Elements</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-spec/design/types.html"><strong aria-hidden="true">8.3.1.</strong> Types</a></li><li class="chapter-item expanded "><a href="vamos-spec/design/keywords.html"><strong aria-hidden="true">8.3.2.</strong> Keywords</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="mpt.html"><strong aria-hidden="true">9.</strong> Prefix transducers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vamos-mpt/intro.html"><strong aria-hidden="true">9.1.</strong> vamos-mpt</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,16 +145,33 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="compiler"><a class="header" href="#compiler">Compiler</a></h1>
+<p>VAMOS has several compilers that generate code and monitors for different use cases.</p>
+<h3 id="vamos-compiler"><a class="header" href="#vamos-compiler">vamos-compiler</a></h3>
+<p>One compiler is <code>vamosc</code> in the repository
+<a href="https://github.com/ista-vamos/vamos-compiler">vamos-compiler</a>.  This compiler
+takes a description how to transform multiple input streams into a single
+output stream that can be analyzed either by an external monitor or by a
+monitor written in the same specification language as the transformation.</p>
+<p>Publication: <a href="https://link.springer.com/chapter/10.1007/978-3-031-30826-0_15">VAMOS: Middleware for Best-Effort Third-Party Monitoring</a></p>
+<h3 id="vamos-mpt"><a class="header" href="#vamos-mpt">vamos-mpt</a></h3>
+<p>Compile a specification of a multi-trace prefix transducer into C++ code.
+There is a work-in-progress to generate code that attaches the MPTs to
+vamos sources. One can always write the code to attach to the sources by hand
+at this moment. The compiler is in the repository
+<a href="https://github.com/ista-vamos/vamos-mpt">vamos-mpt</a></p>
+<h3 id="wip-vamos-specvamos-hyper"><a class="header" href="#wip-vamos-specvamos-hyper">[WIP] vamos-spec/vamos-hyper</a></h3>
+<p>We have a work-in-progress language for specification of hypertrace transformations.
+One can see <code>vamos-mpt</code> as its simplified version.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="sources.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="vamos-sources/intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="monitors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="vamos-monitors/compiler.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -164,11 +181,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="sources.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="vamos-sources/intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="monitors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="vamos-monitors/compiler.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

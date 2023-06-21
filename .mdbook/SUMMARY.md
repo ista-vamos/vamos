@@ -6,7 +6,7 @@
   - [vamos-buffers](./vamos-buffers/intro.md)
 - [Sources](./sources.md)
   - [vamos-sources](./vamos-sources/intro.md)
-- [Compiler](./compiler.md)
+- [Compilers](./compiler.md)
   - [vamos-compiler](./vamos-monitors/compiler.md)
 - [Monitors](./monitors.md)
   - [vamos-monitors](./vamos-monitors/intro.md)
@@ -18,4 +18,6 @@
   - [Elements](./vamos-spec/design.md)
     - [Types](./vamos-spec/design/types.md)
     - [Keywords](./vamos-spec/design/keywords.md)
+- [Prefix transducers](./mpt.md)
+  - [vamos-mpt](./vamos-mpt/intro.md)
 
