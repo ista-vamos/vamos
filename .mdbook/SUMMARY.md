@@ -6,7 +6,7 @@
   - [vamos-buffers](./vamos-buffers/intro.md)
 - [Sources](./sources.md)
   - [vamos-sources](./vamos-sources/intro.md)
-- [Compilers](./compiler.md)
+- [Compilers](./compilers.md)
   - [vamos-compiler](./vamos-monitors/compiler.md)
 - [Monitors](./monitors.md)
   - [vamos-monitors](./vamos-monitors/intro.md)
