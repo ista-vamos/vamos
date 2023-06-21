@@ -82,6 +82,27 @@ monitors-config: export_config buffers monitors-init
 monitors-init: compiler-init
 	test -f vamos-monitors/CMakeLists.txt || git submodule update --init --recursive -- vamos-monitors
 
+# make inits dependent, because git locks config file
+hyper-init: compiler-init
+	# we only clone until the repo is public
+	test -f vamos-hyper/CMakeLists.txt || git clone git@github.com:ista-vamos/vamos-hyper.git
+
+hyper-config: export_config buffers hyper-init
+	cd vamos-hyper && (test -f CMakeCache.txt ||\
+	        cmake . -DCMAKE_C_COMPILER=$(CC)\
+		  -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
+		  -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
+
+hyper: hyper-config
+	+make -C vamos-hyper
+
+spec-config: export_config buffers hyper
+	cd vamos-spec &&\
+	        (cmake . -DCMAKE_C_COMPILER=$(CC)\
+		  -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
+		  -Dvamos-hyper_DIR=../vamos-hyper/cmake/vamos-hyper\
+		  -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
+
 
 fase23-experiments-config: export_config buffers
 	test -f fase23-experiments/CMakeLists.txt || git clone https://github.com/ista-vamos/fase23-experiments.git
