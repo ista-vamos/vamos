@@ -1,0 +1,20 @@
+ifeq ($(TESSLA_SUPPORT), "ON")
+DOWNLOAD_TESSLA_RUST_JAR := "ON"
+else
+DOWNLOAD_TESSLA_RUST_JAR := "OFF"
+endif
+
+compiler: compiler-config
+	+make -C vamos-compiler
+
+compiler-config: export_config buffers compiler-init
+	cd vamos-compiler && (test -f CMakeCache.txt ||\
+		cmake . -DCMAKE_C_COMPILER=$(CC)\
+			-Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
+			-DCMAKE_BUILD_TYPE=$(BUILD_TYPE)\
+			-DDOWNLOAD_TESSLA_RUST_JAR=$(DOWNLOAD_TESSLA_RUST_JAR) $(COMPILER_OPTS))
+
+# make inits dependent, because git locks config file
+compiler-init: sources-init
+	test -f vamos-compiler/CMakeLists.txt || git submodule update --init --recursive -- vamos-compiler
+

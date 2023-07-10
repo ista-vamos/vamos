@@ -1,0 +1,10 @@
+
+buffers: buffers-config
+	+make -C vamos-buffers
+
+buffers-config: export_config buffers-init
+	cd vamos-buffers && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SHAMON_OPTS))
+
+buffers-init:
+	test -f vamos-buffers/CMakeLists.txt || git submodule update --init --recursive -- vamos-buffers
+

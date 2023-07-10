@@ -1,0 +1,9 @@
+
+spec-config: export_config buffers hyper
+	cd vamos-spec &&\
+	        (cmake . -DCMAKE_C_COMPILER=$(CC)\
+		  -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
+		  -Dvamos-hyper_DIR=../vamos-hyper/cmake/vamos-hyper\
+		  -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
+
+

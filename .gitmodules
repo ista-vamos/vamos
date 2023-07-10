@@ -10,3 +10,9 @@
 [submodule "vamos-monitors"]
 	path = vamos-monitors
 	url = https://github.com/ista-vamos/vamos-monitors
+[submodule "vamos-hyper"]
+	path = vamos-hyper
+	url = https://github.com/ista-vamos/vamos-hyper.git
+[submodule "vamos-common"]
+	path = vamos-common
+	url = https://github.com/ista-vamos/vamos-common.git

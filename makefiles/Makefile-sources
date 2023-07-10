@@ -1,0 +1,27 @@
+
+ifeq ($(DYNAMORIO_SOURCES), "ON")
+ifndef DynamoRIO_DIR
+BUILD_DRIO := "yes"
+DynamoRIO_DIR := "ext/dynamorio/build/cmake"
+endif
+endif
+
+sources: buffers sources-config
+	+make -C vamos-sources
+
+dynamorio: sources-init
+ifdef BUILD_DRIO
+	+make -C vamos-sources/ext dynamorio
+else
+ifeq ($(DYNAMORIO_SOURCES), "ON")
+	@echo "Using DynamoRIO_DIR = $(DynamoRIO_DIR)"
+endif
+endif
+
+sources-config: export_config buffers sources-init dynamorio common hyper
+	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DDYNAMORIO_SOURCES=$(DYNAMORIO_SOURCES) -DDynamoRIO_DIR=$(DynamoRIO_DIR) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
+
+sources-init: buffers-init
+	test -f vamos-sources/CMakeLists.txt || git submodule update --init --recursive -- vamos-sources
+
+

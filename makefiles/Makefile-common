@@ -1,0 +1,11 @@
+
+common: common-config
+	+make -C vamos-common
+
+common-config: export_config common-init
+	cd vamos-common && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SHAMON_OPTS))
+
+common-init:
+	test -f vamos-common/CMakeLists.txt || git submodule update --init --recursive -- vamos-common
+
+

@@ -1,0 +1,13 @@
+
+mpt-init: buffers-init hyper-init sources-init
+	# we only clone until the repo is public
+	test -f vamos-mpt/CMakeLists.txt || git clone $(CLONE_METHOD)ista-vamos/vamos-mpt.git
+
+mpt-config: export_config buffers hyper sources
+	cd vamos-mpt && (test -f CMakeCache.txt ||\
+	        cmake . -DCMAKE_C_COMPILER=$(CC)\
+		  -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
+		  -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(COMPILER_OPTS))
+
+mpt: mpt-config
+	+make -C vamos-mpt
