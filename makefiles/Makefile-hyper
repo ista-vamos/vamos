@@ -3,7 +3,7 @@
 # make inits dependent, because git locks config file
 hyper-init: compiler-init
 	# we only clone until the repo is public
-	test -f vamos-hyper/CMakeLists.txt || git clone git@github.com:ista-vamos/vamos-hyper.git
+	test -f vamos-hyper/CMakeLists.txt || git clone git@github.com:ista-vamos/vamos-hyper.git -b dev
 
 hyper-config: export_config buffers hyper-init
 	cd vamos-hyper && (test -f CMakeCache.txt ||\
