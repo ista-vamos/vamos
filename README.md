@@ -4,7 +4,7 @@ VAMOS is a framework containing libraries and a set of tools for monitoring
 heterogeneous asynchronous events sources. Events are efficiently transferred
 via concurrent buffers in the shared memory.
 
-The current developement version can be found in the branch `dev`. Code in this branch my be highly outdated.
+The current developement version can be found in the branch `dev`. Code in the `main` branch may be highly outdated. If you cannot find something that you  think should be here, write to <mchqwerty (at) gmail (dot) com>.
 
 ## Build:
 
