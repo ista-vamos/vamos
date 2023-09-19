@@ -8,7 +8,25 @@ The current developement version can be found in the branch `dev`. Code in the `
 
 ## Build:
 
+You can use the `setup.sh` script for a fast set-up
+
 ```
+# git clone ...
+cd vamos
+python -m venv venv/
+source venv/bin/activate
+
+./setup.sh
+```
+
+For a more detailed build with more control over things, you can build everything manually:
+
+```
+# git clone ...
+cd vamos
+python -m venv venv/
+source venv/bin/activate
+
 make [OPTIONS]
 ```
 
@@ -24,10 +42,19 @@ values in there and run `make reconfigure && make` or `make reset && make`
 (warning: the latter will completely clean repositories, including all files
 that are not under git).
 
+
+## Using
+
+Run `source venv/bin/activate` from the top-level directory and then run the desired script
+from one of the sub-repositories. The sub-repositories have their own READMEs.
+
 ## Components
 
  - `vamos-buffers`  implementation of shared memory buffers used to transfer events
+ - `vamos-common`   common parts shared by multiple VAMOS repositories (mostly python packages)
  - `vamos-sources`  implementation of tracing various standard events in programs (event sources)
- - `vamos-compiler` a compiler of VAMOS specifications
+                    and a specification language for that
+ - `vamos-compiler` a compiler of the legacy VAMOS specifications
  - `vamos-monitors` manually written monitors, mostly for debugging and testing purposes
+ - `vamos-mpt`      a compiler for multi-trace prefix transducers
 
