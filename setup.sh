@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Assumed steps before this script:
 
 # git clone git@github.com:ista-vamos/vamos.git -b dev
@@ -12,7 +14,7 @@ DYNAMORIO_SOURCES="OFF"
 TESSLA_SUPPORT="OFF"
 
 # setup python virtual environment
-if [ ! -d venv/ ]; then
+if [ ! -f venv/bin/activate ]; then
         # echo "Installing python-venv"
         if [ ! python3 -m venv -h &>/dev/null ]; then
                 sudo apt-get install python3-venv
