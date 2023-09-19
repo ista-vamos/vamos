@@ -5,6 +5,7 @@ CC ?= "clang"
 CXX ?= "clang++"
 BUILD_TYPE ?= "RelWithDebInfo"
 DYNAMORIO_SOURCES ?= "ON"
+LLVM_SOURCES ?= "ON"
 TESSLA_SUPPORT ?= "ON"
 
 CLONE_METHOD := "https://github.com/"

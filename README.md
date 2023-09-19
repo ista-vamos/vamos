@@ -32,6 +32,7 @@ make [OPTIONS]
 
 `OPTIONS` may include:
  - `BUILD_TYPE=[Debug|Release|RelWithDebInfo]` the type of build to pass to cmake
+ - `LLVM_SOURCES=OFF` to turn off building event sources based on instrumentation of LLVM
  - `DYNAMORIO_SOURCES=OFF` to turn off building event sources based on DynamoRIO
  - `DynamoRIO_DIR=<path/to/dynamorio/cmake>` to use a particular DynamoRIO build
  - `TESSLA_SUPPORT=[ON|OFF]` enable support for TeSSLa monitors

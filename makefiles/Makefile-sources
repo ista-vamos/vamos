@@ -1,4 +1,3 @@
-
 ifeq ($(DYNAMORIO_SOURCES), "ON")
 ifndef DynamoRIO_DIR
 BUILD_DRIO := "yes"
@@ -19,7 +18,12 @@ endif
 endif
 
 sources-config: export_config buffers sources-init dynamorio common
-	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DDYNAMORIO_SOURCES=$(DYNAMORIO_SOURCES) -DDynamoRIO_DIR=$(DynamoRIO_DIR) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
+	cd vamos-sources && (test -f CMakeCache.txt ||\
+		cmake . -DCMAKE_C_COMPILER=$(CC)\
+			-Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
+			-DDYNAMORIO_SOURCES=$(DYNAMORIO_SOURCES) -DDynamoRIO_DIR=$(DynamoRIO_DIR)\
+			-DLLVM_SOURCES=$(LLVM_SOURCES)\
+			-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
 
 sources-init: buffers-init
 	test -f vamos-sources/CMakeLists.txt || git submodule update --init --recursive -- vamos-sources
