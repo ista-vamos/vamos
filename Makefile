@@ -13,9 +13,9 @@ CLONE_METHOD := "https://github.com/"
 all: check-dependencies export_config buffers compiler sources monitors
 
 check-dependencies:
-	python --version > /dev/null || (echo "Need python 3 installed"; exit 1)
+	python3 --version > /dev/null || (echo "Need python 3 installed"; exit 1)
 	cmake --version > /dev/null || (echo "Need cmake installed"; exit 1)
-	python -c "import lark" || (echo "Need lark installed (pip install lark)"; exit 1)
+	python3 -c "import lark" || (echo "Need lark installed (pip install lark)"; exit 1)
 
 
 # dump current config into a file that will be used on the next run
