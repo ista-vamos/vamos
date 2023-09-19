@@ -21,10 +21,12 @@ if [ ! -f venv/bin/activate ]; then
                 sudo apt-get install python3-venv
         fi
         python3 -m venv venv
+        source venv/bin/activate
         pip install lark
+else
+        source venv/bin/activate
 fi
 
-source venv/bin/activate
 
 make LLVM_SOURCES=$LLVM_SOURCES DYNAMORIO_SOURCES=$DYNAMORIO_SOURCES TESSLA_SUPPORT=$TESSLA_SUPPORT
 make mpt
