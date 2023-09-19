@@ -18,7 +18,7 @@ ifeq ($(DYNAMORIO_SOURCES), "ON")
 endif
 endif
 
-sources-config: export_config buffers sources-init dynamorio common hyper
+sources-config: export_config buffers sources-init dynamorio common
 	cd vamos-sources && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC) -Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers -DDYNAMORIO_SOURCES=$(DYNAMORIO_SOURCES) -DDynamoRIO_DIR=$(DynamoRIO_DIR) -DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
 
 sources-init: buffers-init

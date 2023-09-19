@@ -33,7 +33,7 @@ include makefiles/Makefile-common
 include makefiles/Makefile-compiler
 include makefiles/Makefile-monitors
 include makefiles/Makefile-sources
-include makefiles/Makefile-hyper
+#include makefiles/Makefile-hyper
 include makefiles/Makefile-spec
 include makefiles/Makefile-mpt
 
@@ -51,7 +51,7 @@ fase23-experiments: fase23-experiments-config all
 	echo -e "\n## Now you can go to the folder fase23-experiments and follow README there ##\n"
 
 REPOS := vamos-buffers vamos-compiler vamos-sources vamos-monitors\
-         vamos-common vamos-hyper vamos-mpt vamos-spec
+         vamos-common vamos-mpt vamos-spec
 
 
 clean:
