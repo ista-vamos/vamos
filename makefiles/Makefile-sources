@@ -1,7 +1,7 @@
-ifeq ($(DYNAMORIO_SOURCES), "ON")
+ifeq ($(DYNAMORIO_SOURCES), ON)
 ifndef DynamoRIO_DIR
-BUILD_DRIO := "yes"
-DynamoRIO_DIR := "ext/dynamorio/build/cmake"
+BUILD_DRIO := yes
+DynamoRIO_DIR := ext/dynamorio/build/cmake
 endif
 endif
 
@@ -12,7 +12,7 @@ dynamorio: sources-init
 ifdef BUILD_DRIO
 	+make -C vamos-sources/ext dynamorio
 else
-ifeq ($(DYNAMORIO_SOURCES), "ON")
+ifeq ($(DYNAMORIO_SOURCES), ON)
 	@echo "Using DynamoRIO_DIR = $(DynamoRIO_DIR)"
 endif
 endif
@@ -27,5 +27,4 @@ sources-config: export_config buffers sources-init dynamorio common
 
 sources-init: buffers-init
 	test -f vamos-sources/CMakeLists.txt || git submodule update --init --recursive -- vamos-sources
-
 
