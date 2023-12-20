@@ -7,6 +7,9 @@ BUILD_TYPE ?= "RelWithDebInfo"
 DYNAMORIO_SOURCES ?= "ON"
 LLVM_SOURCES ?= "ON"
 TESSLA_SUPPORT ?= "ON"
+LIBINPUT_SOURCES ?= "ON"
+WLDBG_SOURCES ?= "OFF"
+
 
 CLONE_METHOD := "https://github.com/"
 
@@ -25,6 +28,9 @@ export_config:
 	@echo "BUILD_TYPE:=$(BUILD_TYPE)" >> $(CONFIG)
 	@echo "DYNAMORIO_SOURCES:=$(DYNAMORIO_SOURCES)" >> $(CONFIG)
 	@echo "TESSLA_SUPPORT:=$(TESSLA_SUPPORT)" >> $(CONFIG)
+	@echo "LLVM_SOURCES:=$(LLVM_SOURCES)" >> $(CONFIG)
+	@echo "LIBINPUT_SOURCES:=$(LIBINPUT_SOURCES)" >> $(CONFIG)
+	@echo "WLDBG_SOURCES:=$(WLDBG_SOURCES)" >> $(CONFIG)
 	@echo "Config has been written to $(CONFIG)"
 
 .PHONY: all export_config docs
