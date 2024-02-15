@@ -22,7 +22,7 @@ if [ ! -f venv/bin/activate ]; then
         fi
         python3 -m venv venv
         source venv/bin/activate
-        pip install lark
+        pip install -r vamos-sources/requirements.txt
 else
         source venv/bin/activate
 fi
