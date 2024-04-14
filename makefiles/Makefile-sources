@@ -23,8 +23,8 @@ sources-config: export_config buffers sources-init dynamorio common
 			-Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
 			-DDYNAMORIO_SOURCES=$(DYNAMORIO_SOURCES) -DDynamoRIO_DIR=$(DynamoRIO_DIR)\
 			-DLLVM_SOURCES=$(LLVM_SOURCES)\
-			-DWLDBG_SOURCES=$(LLVM_SOURCES)\
-			-DLIBINPUT_SOURCES=$(LLVM_SOURCES)\
+			-DWLDBG_SOURCES=$(WLDBG_SOURCES)\
+			-DLIBINPUT_SOURCES=$(LIBINPUT_SOURCES)\
 			-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) $(SOURCES_OPTS)) || git clean -xdf
 
 sources-init: buffers-init
