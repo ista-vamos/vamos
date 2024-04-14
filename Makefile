@@ -13,7 +13,7 @@ WLDBG_SOURCES ?= "OFF"
 
 CLONE_METHOD := "https://github.com/"
 
-all: check-dependencies export_config buffers compiler sources monitors
+all: check-dependencies export_config buffers compiler sources
 
 check-dependencies:
 	python3 --version > /dev/null || (echo "Need python 3 installed"; exit 1)
@@ -38,11 +38,7 @@ export_config:
 include makefiles/Makefile-buffers
 include makefiles/Makefile-common
 include makefiles/Makefile-compiler
-include makefiles/Makefile-monitors
 include makefiles/Makefile-sources
-#include makefiles/Makefile-hyper
-include makefiles/Makefile-spec
-include makefiles/Makefile-mpt
 
 fase23-experiments-config: export_config buffers
 	test -f fase23-experiments/CMakeLists.txt || git clone $(CLONE_METHOD)ista-vamos/fase23-experiments.git
@@ -57,8 +53,7 @@ fase23-experiments: fase23-experiments-config all
 	make -C fase23-experiments
 	echo -e "\n## Now you can go to the folder fase23-experiments and follow README there ##\n"
 
-REPOS := vamos-buffers vamos-compiler vamos-sources vamos-monitors\
-         vamos-common vamos-mpt vamos-spec
+REPOS := vamos-buffers vamos-compiler vamos-sources vamos-common 
 
 
 clean:
@@ -76,7 +71,6 @@ reconfigure:
 	make buffers-config
 	make compiler-config
 	make sources-config
-	make monitors-config
 
 set-dev: all
 	for REPO in $(REPOS); do\
