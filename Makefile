@@ -53,6 +53,21 @@ fase23-experiments: fase23-experiments-config all
 	make -C fase23-experiments
 	echo -e "\n## Now you can go to the folder fase23-experiments and follow README there ##\n"
 
+sttt-experiments-config: export_config buffers
+	test -f fase23-experiments/CMakeLists.txt || git clone $(CLONE_METHOD)ista-vamos/fase23-experiments.git -b sttt
+	cd fase23-experiments && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC)\
+		-Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
+		-Dvamos_sources_DIR=../vamos-sources\
+		-Dvamos_compiler_DIR=../vamos-compiler\
+		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE)) || git clean -xdf
+
+sttt-experiments: sttt-experiments-config all
+	# FIXME: change this to use HTTPS after making it public
+	make -C sttt-experiments
+	echo -e "\n## Now you can go to the folder sttt-experiments and follow README there ##\n"
+
+
+
 REPOS := vamos-buffers vamos-compiler vamos-sources vamos-common 
 
 
