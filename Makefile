@@ -54,8 +54,8 @@ fase23-experiments: fase23-experiments-config all
 	echo -e "\n## Now you can go to the folder fase23-experiments and follow README there ##\n"
 
 sttt-experiments-config: export_config buffers
-	test -f fase23-experiments/CMakeLists.txt || git clone $(CLONE_METHOD)ista-vamos/fase23-experiments.git -b sttt
-	cd fase23-experiments && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC)\
+	test -f sttt-experiments/CMakeLists.txt || git clone $(CLONE_METHOD)ista-vamos/fase23-experiments.git -b sttt sttt-experiments
+	cd sttt-experiments && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC)\
 		-Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
 		-Dvamos_sources_DIR=../vamos-sources\
 		-Dvamos_compiler_DIR=../vamos-compiler\
