@@ -46,6 +46,8 @@ fase23-experiments-config: export_config buffers
 		-Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
 		-Dvamos_sources_DIR=../vamos-sources\
 		-Dvamos_compiler_DIR=../vamos-compiler\
+		-DCMAKE_C_COMPILER=$(CC)\
+		-DCMAKE_CXX_COMPILER=$(CXX)\
 		-DCMAKE_BUILD_TYPE=$(BUILD_TYPE)) || git clean -xdf
 
 fase23-experiments: fase23-experiments-config all
