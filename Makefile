@@ -57,7 +57,9 @@ fase23-experiments: fase23-experiments-config all
 
 sttt-experiments-config: export_config buffers
 	test -f sttt-experiments/CMakeLists.txt || git clone $(CLONE_METHOD)ista-vamos/sttt-experiments.git
-	cd sttt-experiments && (test -f CMakeCache.txt || cmake . -DCMAKE_C_COMPILER=$(CC)\
+	cd sttt-experiments && (test -f CMakeCache.txt || cmake .\
+		-DCMAKE_C_COMPILER=$(CC)\
+		-DCMAKE_CXX_COMPILER=$(CXX)
 		-Dvamos-buffers_DIR=../vamos-buffers/cmake/vamos-buffers\
 		-Dvamos_sources_DIR=../vamos-sources\
 		-Dvamos_compiler_DIR=../vamos-compiler\
